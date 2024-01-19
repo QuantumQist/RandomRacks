@@ -12,19 +12,14 @@ import random
 
 def PlotLayout(seq):
     """
-    
-
     Parameters
     ----------
     seq : array with 14 elements of type string and possibe values: "solid", "stripe"
         Generates a plot with the ball layout in 8-ball
 
     Returns noting
-
     """
-    
-    #plot the Balls
-    
+
     #Rows - y coordinates
     y1 = 2 * np.sqrt(3)
     y2 = np.sqrt(3)
@@ -40,22 +35,21 @@ def PlotLayout(seq):
     col_list = []
     for k in range( len(seq) ):
         if seq[k] == "solid":
-            col_list.append( "orange" )
+            col_list.append( "orange" ) #Solids are plotted in orange color, stripes are blue
         elif seq[k] == "stripe":
-            col_list.append("blue")
+            col_list.append( "blue" )
     
-    #Plot the setup
+    #Plot the 8ball
     ball8 = plt.Circle((0, 0), 1, color='black', alpha = 0.5)
     ball8border = plt.Circle((0, 0), 1, color='black', fill=  False)
     
     ax = plt.gca()
     ax.cla() # clear things for fresh plot
-    ax.set_aspect( 1.0 )
+    ax.set_aspect( 1.0 ) #Set aspect ratio of the plot
     
-    # change default range so that new circles will work
+    # change default range
     ax.set_xlim((-5.5, 5.5))
     ax.set_ylim((-5.5, 5.5))
-    # some data
     
     for k in range( len(seq) ):
         ball = plt.Circle((x_coords[k], y_coords[k]), 1, color=col_list[k], alpha = 0.5)
@@ -76,7 +70,7 @@ def generate_rack():
     """
     Input: None
     
-    Returns a random rack of balls 
+    Returns a random rack of balls as an array of strings
 
     """
     #Generate a random ball layout
@@ -100,16 +94,18 @@ def generate_rack():
     return balls
 #________________________________
 
+# Uncomment to make results reproducible
+#random.seed(147) 
 
-random.seed(147) 
+
 for k in range(8):
     rack = generate_rack()
 
-#Rack number 7
+#Rack 1 - looks random (with seed)
 PlotLayout(rack)
 
 for k in range(5):
     rack = generate_rack()
 
-#Rack number 12
+#Rack 2 - the rack from the reel
 PlotLayout(rack)
