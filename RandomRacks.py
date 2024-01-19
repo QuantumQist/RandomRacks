@@ -97,15 +97,5 @@ def generate_rack():
 # Uncomment to make results reproducible
 #random.seed(147) 
 
-
-for k in range(8):
-    rack = generate_rack()
-
-#Rack 1 - looks random (with seed)
-PlotLayout(rack)
-
-for k in range(5):
-    rack = generate_rack()
-
-#Rack 2 - the rack from the reel
+rack = generate_rack()
 PlotLayout(rack)
